@@ -60,6 +60,6 @@ if not vim.g.vscode then
     })
   end
   vim.opt.rtp:prepend(lazypath)
-  require("plugins")
-  require("term-conf")
+  require("tau.plugins")
+  require("tau.term-conf")
 end

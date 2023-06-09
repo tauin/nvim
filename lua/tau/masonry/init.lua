@@ -19,10 +19,6 @@ cmp.setup({
       require("luasnip").lsp_expand(args.body)
     end,
   },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
   mapping = cmp.mapping.preset.insert({
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -61,6 +57,5 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
-
 require("tau.masonry.languages.lua")
 require("tau.masonry.languages.rust")

@@ -13,6 +13,7 @@ local colors = {
   orange   = '#fe8019',
   red      = '#fb4934',
 }
+
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -29,6 +30,7 @@ local conditions = {
 -- Config
 local config = {
   options = {
+    icons_enabled = false,
     component_separators = "",
     section_separators = "",
     theme = "gruvbox_dark",
@@ -77,14 +79,13 @@ ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 ins_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = "! ", warn = "W ", info = "I" },
+  symbols = { error = "X ", warn = "! ", info = "I " },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },
     color_info = { fg = colors.cyan },
   },
 })
-
 ins_left({
   function()
     return "%="
@@ -127,6 +128,6 @@ ins_right({
     return "▊"
   end,
   color = { fg = colors.blue },
-  padding = { left = 1 },
+  padding = { left = 0 },
 })
 lualine.setup(config)

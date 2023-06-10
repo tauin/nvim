@@ -1,4 +1,23 @@
 local lualine = require("lualine")
+local custom_gruvbox = require("lualine.themes.gruvbox_dark")
+
+custom_gruvbox.normal.b.bg = "#504945"
+custom_gruvbox.normal.c.bg = "#504945"
+
+custom_gruvbox.insert.b.bg = "#504945"
+custom_gruvbox.insert.c.bg = "#504945"
+
+custom_gruvbox.visual.b.bg = "#504945"
+custom_gruvbox.visual.c.bg = "#504945"
+
+custom_gruvbox.command.b.bg = "#504945"
+custom_gruvbox.command.c.bg = "#504945"
+
+custom_gruvbox.replace.b.bg = "#504945"
+custom_gruvbox.replace.c.bg = "#504945"
+
+custom_gruvbox.inactive.b.bg = "#504945"
+custom_gruvbox.inactive.c.bg = "#504945"
 
 -- stylua: ignore
 local colors = {
@@ -33,7 +52,8 @@ local config = {
     icons_enabled = false,
     component_separators = "",
     section_separators = "",
-    theme = "gruvbox_dark",
+    theme = custom_gruvbox,
+    globalstatus = true,
   },
   sections = {
     lualine_a = { "mode" },
@@ -70,6 +90,7 @@ ins_left({
 ins_left({
   "filename",
   cond = conditions.buffer_not_empty,
+  color = { fg = colors.fg}
 })
 
 ins_left({ "location", color = { fg = colors.fg, gui = "bold" } })
@@ -79,7 +100,7 @@ ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 ins_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = "X ", warn = "! ", info = "I " },
+  symbols = { error = "X ", warn = "! ", info = "I ", hint="H " },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },

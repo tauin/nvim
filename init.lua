@@ -62,4 +62,5 @@ if not vim.g.vscode then
   vim.opt.rtp:prepend(lazypath)
   require("tau.plugins")
   require("tau.term-conf")
+  require("tau.keymap")
 end

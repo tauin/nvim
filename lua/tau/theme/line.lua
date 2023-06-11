@@ -90,7 +90,7 @@ ins_left({
 ins_left({
   "filename",
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.fg}
+  color = { fg = colors.fg },
 })
 
 ins_left({ "location", color = { fg = colors.fg, gui = "bold" } })
@@ -100,7 +100,7 @@ ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 ins_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = "X ", warn = "! ", info = "I ", hint="H " },
+  symbols = { error = "X ", warn = "! ", info = "I ", hint = "H " },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },

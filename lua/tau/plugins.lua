@@ -23,13 +23,6 @@ return require("lazy").setup({
           ruler = false,
           showcmd = false,
         },
-        twilight = { enabled = true },
-        gitsigns = { enabled = false },
-        tmux = { enabled = false },
-        alacritty = {
-          enabled = true,
-          font = "24"
-        },
       },
       on_open = function()
         vim.opt.laststatus = 0
@@ -41,6 +34,7 @@ return require("lazy").setup({
       end,
     },
   },
+  "folke/twilight.nvim",
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },

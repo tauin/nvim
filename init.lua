@@ -1,8 +1,6 @@
 local opt = vim.opt
 
 local g = vim.g
-local cmd = vim.cmd
-local o = vim.o
 
 local indentWidth = 4
 

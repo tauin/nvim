@@ -16,7 +16,6 @@ opt.sidescrolloff = 8
 opt.numberwidth = 4
 opt.showmode = false
 
-opt.cmdheight = 1
 --Tab configuration
 opt.autoindent = true
 opt.smartindent = true
@@ -42,7 +41,7 @@ opt.undodir = vim.fn.stdpath("config") .. "/undo"
 g.mundo_right = 1
 g.netrw_banner = 0
 g.netrw_liststyle = 3
-vim.g.netrw_winsize = 20
+g.netrw_winsize = 20
 opt.conceallevel = 0
 opt.fileencoding = "utf-8"
 opt.hidden = true

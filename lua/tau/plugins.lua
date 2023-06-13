@@ -34,6 +34,13 @@ return require("lazy").setup({
       end,
     },
   },
+  {
+    "folke/which-key.nvim",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+  },
   "folke/twilight.nvim",
   {
     "nvim-telescope/telescope.nvim",
@@ -59,7 +66,6 @@ return require("lazy").setup({
       "HiPhish/nvim-ts-rainbow2",
     },
   },
-
   {
     "nmac427/guess-indent.nvim",
     init = function()

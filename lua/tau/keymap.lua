@@ -2,11 +2,11 @@ local setKey = vim.keymap.set
 
 setKey(
   "n",
-  "<leader>xx",
+  "<leader>x",
   "<cmd>TroubleToggle<cr>",
   { silent = true, noremap = true }
 )
 
-setKey("n", "<leader>zz", function ()
+setKey("n", "<leader>z", function()
   require("zen-mode").toggle()
 end)

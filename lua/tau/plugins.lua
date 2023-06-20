@@ -145,7 +145,7 @@ return require("lazy").setup({
 
   -- python
 
-  -- nvim
+  -- webdev
 
   -- shell scripts
 })

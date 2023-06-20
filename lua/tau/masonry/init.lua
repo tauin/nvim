@@ -14,7 +14,7 @@ require("mason-tool-installer").setup({
     "pyright",
 
     --rust
-    "rust-analyser"
+    "rust-analyzer"
 
   },
 

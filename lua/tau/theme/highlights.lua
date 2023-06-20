@@ -22,7 +22,8 @@ require("nvim-treesitter.configs").setup({
 
   auto_install = false,
 
-  highlight = { enable = true },
+  highlight = { enable = true,
+  },
   indent = { enable = true, disable = { "python" } },
   incremental_selection = {
     enable = true,
@@ -82,7 +83,11 @@ require("nvim-treesitter.configs").setup({
   rainbow = {
     enable = true,
     disable = { "jsx", "cpp" },
-    query = "rainbow-parens",
+    query = {
+        'rainbow-parens',
+        html = 'rainbow-tags',
+        latex = 'rainbow-blocks',
+    },
     strategy = require("ts-rainbow").strategy.global,
   },
 })

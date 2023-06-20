@@ -14,7 +14,19 @@ require("mason-tool-installer").setup({
     "pyright",
 
     --rust
-    "rust-analyzer"
+    "rust-analyzer",
+
+    --webdev
+    --  css
+    "css-lsp",
+    "stylelint",
+    "tailwindcss-language-server",
+    --  html
+    "html-lsp",
+    "emmet-ls",
+    -- javascript
+    "rome"
+
 
   },
 
@@ -25,11 +37,6 @@ require("mason-tool-installer").setup({
 })
 require("mason").setup()
 require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers {
-  function (server_name)
-    require("lspconfig")[server_name].setup {}
-  end
-}
 
 local cmp = require("cmp")
 
@@ -77,5 +84,14 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("mason-lspconfig").setup_handlers {
+  function (server_name)
+    require("lspconfig")[server_name].setup {
+  capabilities = cmp_capabilities,
+  }
+  end
+}
 require("tau.masonry.languages.lua")
 require("tau.masonry.languages.rust")

@@ -1,8 +1,21 @@
-require("mason").setup()
-require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
   ensure_installed = {
+    -- shell
+    "shellcheck",
+    "shellharden",
+    "shfmt",
+    "bash-language-server",
+
+    --lua
     "lua-language-server",
+    "stylua",
+
+    --python
+    "pyright",
+
+    --rust
+    "rust-analyser"
+
   },
 
   auto_update = false,
@@ -10,6 +23,8 @@ require("mason-tool-installer").setup({
   start_delay = 3000,
   debounce_hours = 5,
 })
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 local cmp = require("cmp")
 

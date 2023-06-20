@@ -142,4 +142,10 @@ return require("lazy").setup({
       require("rust-tools").setup({})
     end,
   },
+
+  -- python
+
+  -- nvim
+
+  -- shell scripts
 })

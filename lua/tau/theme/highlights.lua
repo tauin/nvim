@@ -18,7 +18,7 @@ require("colorizer").setup({
 })
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "python", "rust" },
+  ensure_installed = { "lua", "python", "rust", "bash", "html", "javascript", "css" },
 
   auto_install = false,
 

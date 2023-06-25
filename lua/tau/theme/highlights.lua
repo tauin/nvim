@@ -1,24 +1,13 @@
-require("colorizer").setup({
-  filetypes = { "*" },
-  user_default_options = {
-    RGB = true,
-    RRGGBB = true,
-    names = false,
-    RRGGBBAA = false,
-    AARRGGBB = false,
-    rgb_fn = true,
-    hsl_fn = true,
-    css = false,
-    css_fn = false,
-    mode = "background",
-    tailwind = true,
-    virtualtext = "■",
-    always_update = false,
-  },
-})
+vim.opt.termguicolors = true
+require("ccc").setup {
+  highlighter = {
+    auto_enable = true,
+    lsp = true
+  }
+}
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "python", "rust", "bash", "html", "javascript", "css" },
+  ensure_installed = { "lua", "python", "rust", "haskell", "bash", "html", "javascript", "css" },
 
   auto_install = false,
 

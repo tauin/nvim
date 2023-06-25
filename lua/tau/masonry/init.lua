@@ -16,6 +16,9 @@ require("mason-tool-installer").setup({
     --rust
     "rust-analyzer",
 
+    --Haskell
+    "haskell-language-server",
+
     --webdev
     --  css
     "css-lsp",
@@ -95,3 +98,5 @@ require("mason-lspconfig").setup_handlers {
 }
 require("tau.masonry.languages.lua")
 require("tau.masonry.languages.rust")
+require("tau.masonry.languages.html")
+require("tau.masonry.languages.haskell")

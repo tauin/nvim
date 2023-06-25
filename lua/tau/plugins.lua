@@ -47,6 +47,7 @@ return require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
+  "mfussenegger/nvim-dap",
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -56,7 +57,6 @@ return require("lazy").setup({
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
   },
-
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -80,7 +80,7 @@ return require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
-    opts = { -- settings without a patched font or icons
+    opts = {
 
       icons = false,
       fold_open = "v", -- icon used for open folds
@@ -101,8 +101,7 @@ return require("lazy").setup({
   -- Theming
   { "ellisonleao/gruvbox.nvim", priority = 1000, lazy = false },
   "nvim-lualine/lualine.nvim",
-  "NvChad/nvim-colorizer.lua",
-
+  "uga-rosa/ccc.nvim",
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -142,6 +141,10 @@ return require("lazy").setup({
       require("rust-tools").setup({})
     end,
   },
+
+  --Haskell
+  {"MrcJkb/haskell-tools.nvim", requires = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"}, branch = "1.x.x"},
+  "itchyny/vim-haskell-indent"
 
   -- python
 

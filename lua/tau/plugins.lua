@@ -1,5 +1,6 @@
 return require("lazy").setup({
   --Plugins
+  { "simnalamburt/vim-mundo", lazy = true },
   {
     "folke/zen-mode.nvim",
     opts = {
@@ -36,10 +37,12 @@ return require("lazy").setup({
   },
   {
     "folke/which-key.nvim",
+    event = "VeryLazy",
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+    opts = { triggers_nowait = { "<leader>", "<localleader>" } },
   },
   "folke/twilight.nvim",
   {
@@ -68,15 +71,11 @@ return require("lazy").setup({
   },
   {
     "nmac427/guess-indent.nvim",
-    init = function()
-      require("guess-indent").setup({})
-    end,
+    init = function() require("guess-indent").setup {} end,
   },
   {
     "windwp/nvim-autopairs",
-    init = function()
-      require("nvim-autopairs").setup({})
-    end,
+    init = function() require("nvim-autopairs").setup {} end,
   },
   {
     "folke/trouble.nvim",
@@ -123,32 +122,98 @@ return require("lazy").setup({
     "TimUntersberger/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
 
-    init = function()
-      require("neogit").setup({})
-    end,
+    init = function() require("neogit").setup {} end,
   },
   {
     "lewis6991/gitsigns.nvim",
-    init = function()
-      require("gitsigns").setup()
-    end,
+    init = function() require("gitsigns").setup() end,
   },
 
   --Rust
   {
     "simrat39/rust-tools.nvim",
-    init = function()
-      require("rust-tools").setup({})
-    end,
+    init = function() require("rust-tools").setup {} end,
   },
 
   --Haskell
-  {"MrcJkb/haskell-tools.nvim", requires = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"}, branch = "1.x.x"},
-  "itchyny/vim-haskell-indent"
+  {
+    "MrcJkb/haskell-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    branch = "1.x.x",
+    lazy = true,
+  },
+  "itchyny/vim-haskell-indent",
 
   -- python
 
   -- webdev
 
   -- shell scripts
+}, {
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true, -- reset the package path to improve startup time
+    rtp = {
+      reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+      paths = {}, -- add any custom paths here that you want to includes in the rtp
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+  ui = {
+    icons = {
+      cmd = "$ ",
+      config = "c",
+      event = "!",
+      ft = "ft",
+      init = "in",
+      import = "ip",
+      keys = "ky",
+      lazy = "zz",
+      loaded = "●",
+      not_loaded = "○",
+      plugin = "∈ ",
+      runtime = "V ",
+      source = "◉",
+      start = "▶",
+      task = "✓ ",
+      list = {
+        "●",
+        "➜",
+        "★",
+        "‒",
+      },
+    },
+    -- leave nil, to automatically select a browser depending on your OS.
+    -- If you want to use a specific browser, you can define it here
+    browser = nil, ---@type string?
+    throttle = 20, -- how frequently should the ui process render events
+    custom_keys = {
+      -- you can define custom key maps here.
+      -- To disable one of the defaults, set it to false
+
+      -- open lazygit log
+      ["<localleader>l"] = function(plugin)
+        require("lazy.util").float_term({ "lazygit", "log" }, {
+          cwd = plugin.dir,
+        })
+      end,
+
+      -- open a terminal for the plugin dir
+      ["<localleader>t"] = function(plugin)
+        require("lazy.util").float_term(nil, {
+          cwd = plugin.dir,
+        })
+      end,
+    },
+  },
 })

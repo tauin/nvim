@@ -2,17 +2,25 @@ vim.opt.termguicolors = true
 require("ccc").setup {
   highlighter = {
     auto_enable = true,
-    lsp = true
-  }
+    lsp = true,
+  },
 }
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "python", "rust", "haskell", "bash", "html", "javascript", "css" },
+require("nvim-treesitter.configs").setup {
+  ensure_installed = {
+    "lua",
+    "python",
+    "rust",
+    "haskell",
+    "bash",
+    "html",
+    "javascript",
+    "css",
+  },
 
   auto_install = false,
 
-  highlight = { enable = true,
-  },
+  highlight = { enable = true },
   indent = { enable = true, disable = { "python" } },
   incremental_selection = {
     enable = true,
@@ -73,10 +81,10 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     disable = { "jsx", "cpp" },
     query = {
-        'rainbow-parens',
-        html = 'rainbow-tags',
-        latex = 'rainbow-blocks',
+      "rainbow-parens",
+      html = "rainbow-tags",
+      latex = "rainbow-blocks",
     },
     strategy = require("ts-rainbow").strategy.global,
   },
-})
+}

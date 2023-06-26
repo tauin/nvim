@@ -1,5 +1,5 @@
 vim.opt.background = "dark"
-require("gruvbox").setup({
+require("gruvbox").setup {
   undercurl = true,
   underline = true,
   bold = true,
@@ -20,6 +20,6 @@ require("gruvbox").setup({
   overrides = {},
   dim_inactive = false,
   transparent_mode = false,
-})
+}
 vim.cmd([[colorscheme gruvbox]])
-vim.diagnostic.config({ signs = false })
+vim.diagnostic.config { signs = false }

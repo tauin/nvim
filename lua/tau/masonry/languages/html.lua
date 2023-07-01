@@ -5,7 +5,7 @@ lsp_comf.textDocument.completion.dynamicRegistration = true
 local cap = require("cmp_nvim_lsp").default_capabilities(lsp_comf)
 
 lspconfig.html.setup {
-  capabilities = cap
+  capabilities = cap,
 }
 
 lspconfig.emmet_ls.setup {
@@ -31,5 +31,3 @@ lspconfig.emmet_ls.setup {
     },
   },
 }
-
-

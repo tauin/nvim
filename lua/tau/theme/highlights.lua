@@ -79,6 +79,12 @@ require("nvim-treesitter.configs").setup {
   },
   autotag = {
     enable = true,
-    enable_rename = false
-  }
+    enable_rename = false,
+  },
+  matchup = {
+    enable = true, -- mandatory, false will disable the whole extension
+    -- [options]
+  },
 }
+vim.g.matchup_matchparen_deferred = 1
+vim.g.matchup_matchparen_hi_surround_always = 1

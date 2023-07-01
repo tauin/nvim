@@ -1,4 +1,5 @@
 local setKey = vim.keymap.set
+local hydra = require("hydra")
 setKey(
   "n",
   "<leader>x",
@@ -16,8 +17,40 @@ setKey(
 setKey(
   "n",
   "<leader>m",
-  function ()
-    require('undotree').toggle()
-  end,
+  function() require("undotree").toggle() end,
   { silent = true, noremap = true, desc = "Toggle Undo Tree" }
 )
+
+setKey(
+  "n",
+  "<leader>ff",
+  "<cmd>Format<cr>",
+  { silent = true, noremap = true, desc = "Format file" }
+)
+
+setKey(
+  "n",
+  "<leader>fw",
+  "<cmd>FormatWrite<cr>",
+  { silent = true, noremap = true, desc = "Format & write file" }
+)
+
+local function slew_hydra() print("Hercules slew the Hydra.") end
+hydra {
+  name = "Window resizing",
+
+  mode = "n",
+  body = "<C-W>",
+  heads = {
+    { "+", "<C-W>+", { timeout = false } },
+    { "-", "<C-W>-", { timeout = false } },
+    { ">", "<C-W>>", { timeout = false } },
+    { "<", "<C-W><", { timeout = false } },
+    { "=", "<C-W>=", { exit = true, timeout = false } },
+  },
+  config = {
+    hint = false,
+    on_enter = function() vim.bo.modifiable = false end,
+    on_exit = slew_hydra,
+  },
+}

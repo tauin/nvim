@@ -8,12 +8,14 @@ opt.number = true
 opt.relativenumber = true
 opt.wrap = false
 opt.cursorline = true
-opt.clipboard:append("unnamedplus")
+if not vim.fn.has("wsl") then
+  opt.clipboard = "unnamedplus" -- VERY slow using WSL
+end
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.numberwidth = 4
 opt.showmode = false
-
+opt.mouse = ""
 --Tab configuration
 opt.autoindent = true
 opt.smartindent = true

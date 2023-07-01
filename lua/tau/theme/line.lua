@@ -1,36 +1,16 @@
 local lualine = require("lualine")
-local custom_gruvbox = require("lualine.themes.gruvbox_dark")
-
-custom_gruvbox.normal.b.bg = "#504945"
-custom_gruvbox.normal.c.bg = "#504945"
-
-custom_gruvbox.insert.b.bg = "#504945"
-custom_gruvbox.insert.c.bg = "#504945"
-
-custom_gruvbox.visual.b.bg = "#504945"
-custom_gruvbox.visual.c.bg = "#504945"
-
-custom_gruvbox.command.b.bg = "#504945"
-custom_gruvbox.command.c.bg = "#504945"
-
-custom_gruvbox.replace.b.bg = "#504945"
-custom_gruvbox.replace.c.bg = "#504945"
-
-custom_gruvbox.inactive.b.bg = "#504945"
-custom_gruvbox.inactive.c.bg = "#504945"
-
 -- stylua: ignore
 local colors = {
-  bg       = '#282828',
-  fg       = '#ebdbb2',
-  yellow   = '#fabd2f',
-  cyan     = '#83a598',
-  darkblue = '#83a598',
-  violet   = '#d3869b',
-  blue     = '#83a598',
-  green    = '#b8bb26',
-  orange   = '#fe8019',
-  red      = '#fb4934',
+  bg       = '#21242b',
+  fg       = '#5b6268',
+  yellow   = '#ecbe7b',
+  cyan     = '#46d9ff',
+  darkblue = '#2257a0',
+  violet   = '#a9a1e1',
+  blue     = '#51afef',
+  green    = '#98be65',
+  orange   = '#da8548',
+  red      = '#ff6c6b',
 }
 
 local conditions = {
@@ -48,7 +28,6 @@ local config = {
     icons_enabled = false,
     component_separators = "",
     section_separators = "",
-    theme = custom_gruvbox,
     globalstatus = true,
   },
   sections = {

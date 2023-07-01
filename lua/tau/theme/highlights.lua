@@ -18,10 +18,10 @@ require("nvim-treesitter.configs").setup {
     "css",
   },
 
-  auto_install = false,
+  auto_install = true,
 
   highlight = { enable = true },
-  indent = { enable = true, disable = { "python" } },
+  indent = { enable = true, disable = { "python", "html" } },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -77,14 +77,8 @@ require("nvim-treesitter.configs").setup {
   endwise = {
     enable = true,
   },
-  rainbow = {
+  autotag = {
     enable = true,
-    disable = { "jsx", "cpp" },
-    query = {
-      "rainbow-parens",
-      html = "rainbow-tags",
-      latex = "rainbow-blocks",
-    },
-    strategy = require("ts-rainbow").strategy.global,
-  },
+    enable_rename = false
+  }
 }

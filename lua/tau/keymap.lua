@@ -16,6 +16,8 @@ setKey(
 setKey(
   "n",
   "<leader>m",
-  "<cmd>MundoToggle<cr>",
-  { silent = true, noremap = true, desc = "Toggle Mundo Tree" }
+  function ()
+    require('undotree').toggle()
+  end,
+  { silent = true, noremap = true, desc = "Toggle Undo Tree" }
 )

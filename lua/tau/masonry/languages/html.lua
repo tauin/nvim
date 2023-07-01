@@ -1,15 +1,19 @@
 local lspconfig = require("lspconfig")
-local cap = vim.lsp.protocol.make_client_capabilities()
-cap.textDocument.completion.completionItem.snippetSupport = true
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsp_comf = vim.lsp.protocol.make_client_capabilities()
+lsp_comf.textDocument.completion.completionItem.snippetSupport = true
+lsp_comf.textDocument.completion.dynamicRegistration = true
+local cap = require("cmp_nvim_lsp").default_capabilities(lsp_comf)
+
+lspconfig.html.setup {
+  capabilities = cap
+}
 
 lspconfig.emmet_ls.setup {
-  capabilities = capabilities,
+  capabilities = cap,
   filetypes = {
     "css",
     "eruby",
     "html",
-    "javascript",
     "javascriptreact",
     "less",
     "sass",
@@ -22,9 +26,10 @@ lspconfig.emmet_ls.setup {
   init_options = {
     html = {
       options = {
-        -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
         ["bem.enabled"] = true,
       },
     },
   },
 }
+
+

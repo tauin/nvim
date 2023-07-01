@@ -1,6 +1,15 @@
 return require("lazy").setup({
   --Plugins
-  { "simnalamburt/vim-mundo", lazy = true },
+  {
+    event = "VeryLazy",
+    "jiaoshijie/undotree",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      float_diff = false
+    }
+  },
   {
     "folke/zen-mode.nvim",
     opts = {
@@ -34,6 +43,8 @@ return require("lazy").setup({
         vim.opt.cmdheight = 1
       end,
     },
+    lazy = true,
+    cmd = "ZenMode"
   },
   {
     "folke/which-key.nvim",
@@ -44,12 +55,13 @@ return require("lazy").setup({
     end,
     opts = { triggers_nowait = { "<leader>", "<localleader>" } },
   },
-  "folke/twilight.nvim",
+  {"folke/twilight.nvim", lazy=true, cmd="ZenMode"},
   {
     "nvim-telescope/telescope.nvim",
+    lazy = true,
+    cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-
   "mfussenegger/nvim-dap",
   -- LSP
   {
@@ -60,15 +72,20 @@ return require("lazy").setup({
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
   },
+  {"hrsh7th/nvim-linkedit", dependencies={"neovim/nvim-lspconfig"}},
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-endwise",
-      "HiPhish/nvim-ts-rainbow2",
     },
   },
+  {"RRethy/nvim-treesitter-textsubjects", dependencies = {"nvim-treesitter/nvim-treesitter"}},
+  {"windwp/nvim-ts-autotag", ft="html"},
+  {"https://git.sr.ht/~whynothugo/lsp_lines.nvim", init = function ()
+    require("lsp_lines").setup()
+  end},
   {
     "nmac427/guess-indent.nvim",
     init = function() require("guess-indent").setup {} end,
@@ -80,27 +97,27 @@ return require("lazy").setup({
   {
     "folke/trouble.nvim",
     opts = {
-
       icons = false,
       fold_open = "v", -- icon used for open folds
       fold_closed = ">", -- icon used for closed folds
       indent_lines = false, -- add an indent guide below the fold icons
       signs = {
-        -- icons / text used for a diagnostic
         error = "X",
-        warning = "!",
+        warning = "W",
         hint = "H",
         information = "?",
       },
       use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = true,
+    cmd = "TroubleToggle"
   },
 
   -- Theming
-  { "ellisonleao/gruvbox.nvim", priority = 1000, lazy = false },
+  { "NTBBloodbath/doom-one.nvim", priority = 1000, lazy = false },
   "nvim-lualine/lualine.nvim",
   "uga-rosa/ccc.nvim",
+  "lukas-reineke/indent-blankline.nvim",
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -114,15 +131,15 @@ return require("lazy").setup({
     },
   },
 
-  "L3MON4D3/LuaSnip",
+  {"L3MON4D3/LuaSnip", version="1.*", build = "make install_jsregexp"},
   "saadparwaiz1/cmp_luasnip",
 
   --Git
   {
     "TimUntersberger/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
-
-    init = function() require("neogit").setup {} end,
+    lazy = true,
+    cmd = "Neogit"
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -130,19 +147,17 @@ return require("lazy").setup({
   },
 
   --Rust
-  {
-    "simrat39/rust-tools.nvim",
-    init = function() require("rust-tools").setup {} end,
-  },
+  {"simrat39/rust-tools.nvim", lazy=true},
+  {"Saecki/crates.nvim", lazy=true},
 
   --Haskell
   {
     "MrcJkb/haskell-tools.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     branch = "1.x.x",
     lazy = true,
   },
-  "itchyny/vim-haskell-indent",
+  {"itchyny/vim-haskell-indent", ft="hs"},
 
   -- python
 
@@ -154,10 +169,7 @@ return require("lazy").setup({
     cache = {
       enabled = true,
     },
-    reset_packpath = true, -- reset the package path to improve startup time
     rtp = {
-      reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-      paths = {}, -- add any custom paths here that you want to includes in the rtp
       disabled_plugins = {
         "gzip",
         "matchit",
@@ -192,28 +204,6 @@ return require("lazy").setup({
         "★",
         "‒",
       },
-    },
-    -- leave nil, to automatically select a browser depending on your OS.
-    -- If you want to use a specific browser, you can define it here
-    browser = nil, ---@type string?
-    throttle = 20, -- how frequently should the ui process render events
-    custom_keys = {
-      -- you can define custom key maps here.
-      -- To disable one of the defaults, set it to false
-
-      -- open lazygit log
-      ["<localleader>l"] = function(plugin)
-        require("lazy.util").float_term({ "lazygit", "log" }, {
-          cwd = plugin.dir,
-        })
-      end,
-
-      -- open a terminal for the plugin dir
-      ["<localleader>t"] = function(plugin)
-        require("lazy.util").float_term(nil, {
-          cwd = plugin.dir,
-        })
-      end,
     },
   },
 })

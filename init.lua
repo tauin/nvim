@@ -36,7 +36,7 @@ opt.ignorecase = true
 -- Vim Undofile, rather than swap files (Combine with Vim-Mundo!)
 opt.swapfile = false
 opt.undofile = true
-opt.undodir = vim.fn.stdpath("config") .. "/undo"
+opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
 --test
 -- NetRW Tree

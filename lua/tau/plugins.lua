@@ -71,7 +71,6 @@ return require("lazy").setup({
     event = "VeryLazy",
     lazy = true,
   },
-  { "hrsh7th/nvim-linkedit", dependencies = { "neovim/nvim-lspconfig" } },
   {
     "mhartington/formatter.nvim",
     lazy = true,

@@ -138,5 +138,3 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 }
-require("tau.masonry.languages.lua")
-require("tau.masonry.languages.rust")

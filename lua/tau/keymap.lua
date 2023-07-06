@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     local lspopts = { buffer = ev.buf, silent = true }
-    set("n", "gD", vim.lsp.buf.declaration, lspopts)
+    set("n", "kD", vim.lsp.buf.declaration, lspopts)
     set("n", "K", vim.lsp.buf.hover, lspopts)
     set("n", "<C-k>", vim.lsp.buf.signature_help, lspopts)
     set("n", "<leader>D", vim.lsp.buf.type_definition, lspopts)

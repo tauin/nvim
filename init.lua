@@ -1,3 +1,4 @@
+vim.loader.enable()
 local opt = vim.opt
 
 local g = vim.g
@@ -16,6 +17,7 @@ opt.sidescrolloff = 8
 opt.numberwidth = 4
 opt.showmode = false
 opt.mouse = ""
+
 --Tab configuration
 opt.autoindent = true
 opt.smartindent = true
@@ -54,7 +56,7 @@ if not vim.g.vscode then
       "clone",
       "--filter=blob:none",
       "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
+      "--branch=stable",
       lazypath,
     }
   end
@@ -62,4 +64,6 @@ if not vim.g.vscode then
   require("tau.plugins")
   require("tau.term-conf")
   require("tau.keymap")
+else
+  g.mapleader = ","
 end

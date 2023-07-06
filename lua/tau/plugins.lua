@@ -1,11 +1,9 @@
 return require("lazy").setup({
   --Plugins
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "jiaoshijie/undotree",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    lazy = true,
     opts = {
       float_diff = false,
     },
@@ -61,13 +59,23 @@ return require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", build = ":MasonUpdate" },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        event = "VeryLazy",
+        lazy = true,
+      },
+      { "williamboman/mason-lspconfig.nvim", event = "VeryLazy", lazy = true },
+      { "WhoIsSethDaniel/mason-tool-installer.nvim", event = "VeryLazy", lazy = true },
     },
+    event = "VeryLazy",
+    lazy = true,
   },
   { "hrsh7th/nvim-linkedit", dependencies = { "neovim/nvim-lspconfig" } },
-  { "mhartington/formatter.nvim" },
+  {
+    "mhartington/formatter.nvim",
+    lazy = true,
+  },
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -89,7 +97,7 @@ return require("lazy").setup({
       },
     },
   },
-  { "andymass/vim-matchup" },
+  { "andymass/vim-matchup"},
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -98,6 +106,8 @@ return require("lazy").setup({
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     init = function() require("lsp_lines").setup() end,
+    lazy = true,
+    event = "VeryLazy"
   },
   {
     "nmac427/guess-indent.nvim",
@@ -125,12 +135,21 @@ return require("lazy").setup({
     lazy = true,
     cmd = "TroubleToggle",
   },
-  {"anuvyklack/hydra.nvim"},
+  { "anuvyklack/hydra.nvim" },
   -- Theming
-  { "NTBBloodbath/doom-one.nvim", priority = 1000, lazy = false },
+  {
+    "ramojus/mellifluous.nvim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      vim.opt.background = "dark"
+      vim.diagnostic.config { signs = false, virtual_text = false }
+      vim.cmd("colorscheme mellifluous")
+    end,
+  },
   "nvim-lualine/lualine.nvim",
-  {"uga-rosa/ccc.nvim", event = "VeryLazy"},
-  {"lukas-reineke/indent-blankline.nvim", event = "VeryLazy"},
+  { "uga-rosa/ccc.nvim", event = "VeryLazy" },
+  { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy", lazy = true },
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -149,7 +168,7 @@ return require("lazy").setup({
 
   --Git
   {
-    "TimUntersberger/neogit",
+    "NeogitOrg/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
     lazy = true,
     cmd = "Neogit",
@@ -157,6 +176,8 @@ return require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     init = function() require("gitsigns").setup() end,
+    lazy = true,
+    event = "VeryLazy"
   },
 
   --Rust
@@ -170,13 +191,14 @@ return require("lazy").setup({
     branch = "1.x.x",
     lazy = true,
   },
-  { "itchyny/vim-haskell-indent", ft = "hs" },
+  { "itchyny/vim-haskell-indent", ft = "haskell" },
 
   -- python
 
   -- webdev
 
   -- shell scripts
+  "dstein64/vim-startuptime"
 }, {
   performance = {
     cache = {

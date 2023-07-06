@@ -18,10 +18,10 @@ require("nvim-treesitter.configs").setup {
     "css",
   },
 
-  auto_install = true,
-
-  highlight = { enable = true },
   indent = { enable = true, disable = { "python", "html" } },
+
+  auto_install = true,
+  highlight = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -66,12 +66,6 @@ require("nvim-treesitter.configs").setup {
     },
     swap = {
       enable = true,
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
     },
   },
   endwise = {
@@ -79,11 +73,10 @@ require("nvim-treesitter.configs").setup {
   },
   autotag = {
     enable = true,
-    enable_rename = false,
+    enable_rename = true,
   },
   matchup = {
-    enable = true, -- mandatory, false will disable the whole extension
-    -- [options]
+    enable = true,
   },
 }
 vim.g.matchup_matchparen_deferred = 1

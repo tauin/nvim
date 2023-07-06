@@ -23,7 +23,6 @@ require("mason-tool-installer").setup {
     --  css
     "css-lsp",
     "stylelint",
-    "tailwindcss-language-server",
     --  html
     "html-lsp",
     "emmet-ls",
@@ -141,4 +140,3 @@ require("mason-lspconfig").setup_handlers {
 }
 require("tau.masonry.languages.lua")
 require("tau.masonry.languages.rust")
-require("tau.masonry.languages.html")

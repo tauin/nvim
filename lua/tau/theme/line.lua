@@ -1,16 +1,16 @@
 local lualine = require("lualine")
 -- stylua: ignore
 local colors = {
-  bg       = '#21242b',
-  fg       = '#5b6268',
-  yellow   = '#ecbe7b',
-  cyan     = '#46d9ff',
-  darkblue = '#2257a0',
-  violet   = '#a9a1e1',
-  blue     = '#51afef',
-  green    = '#98be65',
-  orange   = '#da8548',
-  red      = '#ff6c6b',
+  bg       = '#282727',
+  fg       = '#625e5a',
+  yellow   = '#c4b28a',
+  cyan     = '#949fb5',
+  darkblue = '#658594',
+  violet   = '#8992a7',
+  blue     = '#8ba4b0',
+  green    = '#76946A',
+  orange   = '#DCA561',
+  red      = '#C34043',
 }
 
 local conditions = {
@@ -111,11 +111,5 @@ ins_right {
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
-}
-
-ins_right {
-  function() return "▊" end,
-  color = { fg = colors.blue },
-  padding = { left = 0 },
 }
 lualine.setup(config)

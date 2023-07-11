@@ -16,7 +16,6 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.numberwidth = 4
 opt.showmode = false
-opt.mouse = ""
 
 --Tab configuration
 opt.autoindent = true

@@ -47,7 +47,6 @@ return require("lazy").setup({
     end,
     opts = { triggers_nowait = { "<leader>", "<localleader>" } },
   },
-  { "folke/twilight.nvim", lazy = true, cmd = "ZenMode" },
   {
     "nvim-telescope/telescope.nvim",
     lazy = true,
@@ -72,8 +71,23 @@ return require("lazy").setup({
     lazy = true,
   },
   {
-    "mhartington/formatter.nvim",
-    lazy = true,
+    {
+      "mhartington/formatter.nvim",
+      lazy = true,
+      cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
+      init = function()
+        require("formatter").setup {
+          filetype = {
+            lua = {
+              require("formatter.filetypes.lua").stylua,
+            },
+            html = {
+              require("formatter.filetypes.html").htmlbeautify,
+            },
+          },
+        }
+      end,
+    },
   },
   --Treesitter
   {
@@ -96,7 +110,7 @@ return require("lazy").setup({
       },
     },
   },
-  { "andymass/vim-matchup"},
+  { "andymass/vim-matchup" },
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -106,7 +120,7 @@ return require("lazy").setup({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     init = function() require("lsp_lines").setup() end,
     lazy = true,
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "nmac427/guess-indent.nvim",
@@ -137,13 +151,45 @@ return require("lazy").setup({
   { "anuvyklack/hydra.nvim" },
   -- Theming
   {
-    "ramojus/mellifluous.nvim",
+    "rebelot/kanagawa.nvim",
     priority = 1000,
     lazy = false,
     config = function()
       vim.opt.background = "dark"
       vim.diagnostic.config { signs = false, virtual_text = false }
-      vim.cmd("colorscheme mellifluous")
+      require("kanagawa").setup {
+        compile = true, -- enable compiling the colorscheme
+        keywordStyle = { italic = false },
+        statementStyle = { bold = false },
+        overrides = function(colors) -- add/modify highlights
+          local theme = colors.theme
+          return {
+            TelescopeTitle = { fg = theme.ui.special, bold = true },
+            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+            TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+            TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+            TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+            TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+          }
+        end,
+        theme = "dragon",
+        background = { -- map the value of 'background' option to a theme
+          dark = "dragon", -- try "dragon" !
+          light = "lotus",
+        },
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "#141414",
+                fg_gutter = "#5b5b5b"
+              },
+            },
+          },
+        },
+      }
+      vim.cmd("colorscheme kanagawa")
     end,
   },
   "nvim-lualine/lualine.nvim",
@@ -176,7 +222,7 @@ return require("lazy").setup({
     "lewis6991/gitsigns.nvim",
     init = function() require("gitsigns").setup() end,
     lazy = true,
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
 
   --Rust
@@ -196,8 +242,8 @@ return require("lazy").setup({
 
   -- webdev
 
-  -- shell scripts
-  "dstein64/vim-startuptime"
+  -- ruby
+  { "vim-ruby/vim-ruby", ft = "ruby" },
 }, {
   performance = {
     cache = {

@@ -1,5 +1,6 @@
 local set = vim.keymap.set
 local hydra = require("hydra")
+local wk = require("which-key")
 
 local opts = { silent = true, noremap = true }
 local mode = "force"
@@ -26,6 +27,13 @@ set(
   optMap(mode, opts, { desc = "Toggle Undo Tree" })
 )
 
+
+wk.register {
+  ["<leader>f"] = {
+    name = "+formatting"
+  }
+}
+
 set("n", "<leader>ff", "<cmd>Format<cr>", optMap(mode, opts, { desc = "Format file" }))
 
 set(
@@ -38,7 +46,9 @@ set(
 set(
   "n",
   "<leader>g",
-  require("neogit").open,
+  function ()
+   require("neogit").open {}
+  end,
   optMap(mode, opts, {desc = "Open Neogit"})
 )
 
@@ -74,17 +84,23 @@ hydra {
   },
 }
 
+
 local dap = require("dap")
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    local lspopts = { buffer = ev.buf, silent = true }
-    set("n", "kD", vim.lsp.buf.declaration, lspopts)
-    set("n", "K", vim.lsp.buf.hover, lspopts)
-    set("n", "<C-k>", vim.lsp.buf.signature_help, lspopts)
-    set("n", "<leader>D", vim.lsp.buf.type_definition, lspopts)
-    set("n", "<leader>rn", vim.lsp.buf.rename, lspopts)
-    set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, lspopts)
+    wk.register {
+      ["<leader>l"] = {
+        name = "+lsp"
+      }
+    }
+    local lspopts = { buffer = ev.buf, silent = true, noremap = true }
+    set("n", "<leader>lD", vim.lsp.buf.declaration, optMap(mode, lspopts, {desc = "Jump to symbol declaration"}))
+    set("n", "<leader>lh", vim.lsp.buf.hover, optMap(mode, lspopts, {desc = "Hover Info"}))
+    set("n", "<leader>ls", vim.lsp.buf.signature_help, optMap(mode, lspopts, {desc = "Symbol Signature"}))
+    set("n", "<leader>lt", vim.lsp.buf.type_definition, optMap(mode, lspopts, {desc = "Jump to type definition"}))
+    set("n", "<leader>lr", vim.lsp.buf.rename, optMap(mode, lspopts, {desc = "Rename Symbol"}))
+    set({ "n", "v" }, "<space>la", vim.lsp.buf.code_action, optMap(mode, lspopts, {desc = "Code Action"}))
     set("n", "<F5>", dap.continue, { desc = "DAP: Continue" })
     set("n", "<F7>", dap.step_into, { desc = "DAP: Step Into" })
     set("n", "<F8>", dap.step_over, { desc = "DAP: Step Over" })

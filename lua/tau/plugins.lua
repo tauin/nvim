@@ -53,6 +53,11 @@ return require("lazy").setup({
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    init = function() require("todo-comments").setup { signs = false } end,
+  },
   "mfussenegger/nvim-dap",
   -- LSP
   {
@@ -183,7 +188,7 @@ return require("lazy").setup({
             all = {
               ui = {
                 bg_gutter = "#141414",
-                fg_gutter = "#5b5b5b"
+                fg_gutter = "#5b5b5b",
               },
             },
           },
@@ -217,12 +222,34 @@ return require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     lazy = true,
     cmd = "Neogit",
+    opts = {
+      integrations = {
+        diffview = true,
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
     init = function() require("gitsigns").setup() end,
     lazy = true,
     event = "VeryLazy",
+  },
+  {
+    "sindrets/diffview.nvim",
+    init = function()
+      require("diffview").setup {
+        use_icons = false,
+        icons = { -- Only applies when use_icons is true.
+          folder_closed = ">",
+          folder_open = "v",
+        },
+        signs = {
+          fold_closed = ">",
+          fold_open = "v",
+          done = "✓",
+        },
+      }
+    end,
   },
 
   --Rust

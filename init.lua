@@ -1,9 +1,20 @@
 vim.loader.enable()
+
+-- TODO: check for libraries like luajit
+local required_commands = {"gcc", "make", "cargo", "npm", "ghcup", "rg"}
+for _, cmd in ipairs(required_commands) do
+  if vim.fn.executable(cmd) ~= 1 then
+    print("ERROR: command" .. cmd .. " not found in path, aborting")
+    return
+  end
+end
+
 local opt = vim.opt
 
 local g = vim.g
 
 local indentWidth = 4
+opt.showtabline = 0
 
 opt.number = true
 opt.relativenumber = true

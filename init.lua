@@ -1,7 +1,7 @@
 vim.loader.enable()
 
--- TODO: check for libraries like luajit
-local required_commands = {"gcc", "make", "cargo", "npm", "ghcup", "rg"}
+-- TODO: check for libraries like luajit and libstdc++ etc etc.
+local required_commands = {"gcc", "g++", "make", "cargo", "npm", "ghcup", "rg"}
 for _, cmd in ipairs(required_commands) do
   if vim.fn.executable(cmd) ~= 1 then
     print("ERROR: command" .. cmd .. " not found in path, aborting")
